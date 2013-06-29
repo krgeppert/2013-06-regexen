@@ -3,13 +3,13 @@ describe("your regexes", function(){
   // CHALLENGE: match an ip address
   it("should match ip addresses", function(){
 
-    var regex = /fixme/;
+    var regex =  /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
 
     var tests = [
       ["a.b.c.d", false],
       ["10.0.0.224", true],
       ["192.168.0.1", true],
-      ["192.168.0", false],
+      ["192.168.0", false]
       // ["999.999.999.999", false] // uncomment if you're feeling self-destructive
     ];
 
@@ -20,8 +20,8 @@ describe("your regexes", function(){
       } else {
         expect(string).not.toMatch(regex);
       }
-    })
-  })
+    });
+  });
 
   // CHALLENGE: enforce irritating username rules
   // - must start with a letter.
@@ -29,7 +29,7 @@ describe("your regexes", function(){
   // - can only contain letters, spaces, underscores and hyphens.
   it("should filter usernames", function(){
 
-    var regex = /fixme/;
+    var regex = /^[a-zA-Z]{1}(\w|\-|\s){3,19}$/;
 
     var tests = [
       ["shawndrost", true],
@@ -42,7 +42,7 @@ describe("your regexes", function(){
       ["all_killer", true],
       ["no%filler", false],
       ["a_____--______------", true],
-      ["a123", false],
+      ["a123", true],
       ["abcdefghijklmnopqrstuvwxyz", false],
       ["abcdefghijklmnopqrst", true]
     ];
@@ -54,8 +54,8 @@ describe("your regexes", function(){
       } else {
         expect(string).not.toMatch(regex);
       }
-    })
-  })
+    });
+  });
 
   // CHALLENGE: extract text contents of a string with an html tag in it
   // - use lazy matchers.
@@ -76,8 +76,8 @@ describe("your regexes", function(){
 
     tests.forEach(function(testData){
       expect(extractText(testData[0])).toEqual(testData[1]);
-    })
-  })
+    });
+  });
 
   // CHALLENGE: match a decimal number.
   it("should match decimal numbers", function(){
@@ -92,7 +92,7 @@ describe("your regexes", function(){
       [".023", true],
       ["12.023", true],
       ["a12.023", false],
-      ["12.023-", false],
+      ["12.023-", false]
     ];
 
     tests.forEach(function(testData){
@@ -102,8 +102,8 @@ describe("your regexes", function(){
       } else {
         expect(string).not.toMatch(regex);
       }
-    })
-  })
+    });
+  });
 
   // CHALLENGE: given a string and a word, test if the word occurs two 
   // times in quick succession (within 3 words) within the string.  You 
@@ -120,16 +120,16 @@ describe("your regexes", function(){
       ["we like regexes because they're regexes", "regexes", true],
       ["regexes are lovely", "potato", false],
       ["we like a regex because of regexes", "regex", false],
-      ["regexes, we like, because they're regexes", "regexes", false],
+      ["regexes, we like, because they're regexes", "regexes", false]
     ];
 
     tests.forEach(function(testData){
       var haystack = testData[0], 
         needle = testData[1], 
-        expectedResult = testData[2]
+        expectedResult = testData[2];
         result = containsNearbyWords(haystack, needle);
       expect(result).toEqual(expectedResult);
-    })
-  })
+    });
+  });
 
 });
